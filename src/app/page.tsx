@@ -78,7 +78,7 @@ export default function Home() {
     try {
       const formData = new FormData();
       formData.append("file", selectedFile);
-
+      formData.append("select_models", selectModels.toString());
       const response = await fetch(
         "https://minh9972t12-yolocar.hf.space/detect",
         {
@@ -90,7 +90,6 @@ export default function Home() {
       if (!response.ok) {
         throw new Error("API request failed");
       }
-      formData.append("select_models", selectModels.toString());
 
       const data = await response.json();
       const imagePath = `https://minh9972t12-yolocar.hf.space/${data.visualized_image_path}`;
