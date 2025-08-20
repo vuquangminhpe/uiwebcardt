@@ -1,12 +1,18 @@
 "use client";
 
 import { useState } from "react";
-
+import CarDamageFlow from "./flow";
+const modelsIndex = [
+  { name: "small models" },
+  { name: "medium models" },
+  { name: "large models" },
+];
 export default function Home() {
   const [mode, setMode] = useState<"detection" | "compare">("detection");
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [beforeFiles, setBeforeFiles] = useState<File[]>([]);
   const [afterFiles, setAfterFiles] = useState<File[]>([]);
+  const [selectModels, setSelectModels] = useState<number>(2);
   const [loading, setLoading] = useState(false);
   const [resultImage, setResultImage] = useState<string | null>(null);
   const [beforeResults, setBeforeResults] = useState<string[]>([]);
@@ -84,6 +90,7 @@ export default function Home() {
       if (!response.ok) {
         throw new Error("API request failed");
       }
+      formData.append("select_models", selectModels.toString());
 
       const data = await response.json();
       const imagePath = `https://minh9972t12-yolocar.hf.space/${data.visualized_image_path}`;
@@ -123,7 +130,7 @@ export default function Home() {
           formData.append(`after_${index + 1}`, file);
         }
       });
-
+      formData.append("select_models", selectModels.toString());
       const response = await fetch(
         "https://minh9972t12-yolocar.hf.space/compare",
         {
@@ -181,12 +188,33 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen  bg-gray-50 dark:bg-gray-900 relative">
+      <CarDamageFlow />
       <div className="max-w-7xl mx-auto px-4 py-8">
         <div className="text-center mb-12">
           <h1 className="text-5xl font-light text-gray-900 dark:text-white mb-4">
             Car Detection
           </h1>
+        </div>
+        <div className="text-center mb-12">
+          <div className="flex justify-center gap-4">
+            {modelsIndex.map((data, index) => (
+              <button
+                onClick={() => setSelectModels(index)}
+                key={index}
+                className={`px-6 py-2 rounded-full font-medium border transition-all shadow-sm focus:outline-none
+                  ${
+                    selectModels === index
+                      ? "bg-blue-600 text-white border-blue-600 shadow-md scale-105"
+                      : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 border-gray-300 dark:border-gray-600 hover:bg-blue-50 dark:hover:bg-gray-700 hover:border-blue-400"
+                  }
+                `}
+                style={{ minWidth: 140 }}
+              >
+                {data.name}
+              </button>
+            ))}
+          </div>
         </div>
 
         <div className="flex justify-center mb-12">
