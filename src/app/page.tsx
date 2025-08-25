@@ -5,6 +5,7 @@ import CarDamageFlow from "./flow";
 const modelsIndex = [
   { name: "small models" },
   { name: "medium models" },
+  { name: "medium models version 2" },
   { name: "large models" },
 ];
 export default function Home() {
