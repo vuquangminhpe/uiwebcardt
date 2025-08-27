@@ -4,6 +4,7 @@ import { useState } from "react";
 import CarDamageFlow from "./flow";
 const modelsIndex = [
   { name: "small models" },
+  { name: "small models version 2" },
   { name: "medium models" },
   { name: "medium models version 2" },
   { name: "large models" },
