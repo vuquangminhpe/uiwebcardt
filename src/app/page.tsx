@@ -7,7 +7,6 @@ const modelsIndex = [
   { name: "small models v2" },
   { name: "medium models" },
   { name: "medium models version 2" },
-  { name: "large models" },
   { name: "small models onnx" },
   { name: "small models onnx v2" },
   { name: "medium models onnx " },
