@@ -4,10 +4,14 @@ import { useState } from "react";
 import CarDamageFlow from "./flow";
 const modelsIndex = [
   { name: "small models" },
-  { name: "small models version 2" },
+  { name: "small models v2" },
   { name: "medium models" },
   { name: "medium models version 2" },
   { name: "large models" },
+  { name: "small models onnx" },
+  { name: "small models onnx v2" },
+  { name: "medium models onnx " },
+  { name: "medium models onnx v2" },
 ];
 export default function Home() {
   const [mode, setMode] = useState<"detection" | "compare">("detection");
@@ -198,7 +202,7 @@ export default function Home() {
           </h1>
         </div>
         <div className="text-center mb-12">
-          <div className="flex justify-center gap-4">
+          <div className="flex gap-4">
             {modelsIndex.map((data, index) => (
               <button
                 onClick={() => setSelectModels(index)}
