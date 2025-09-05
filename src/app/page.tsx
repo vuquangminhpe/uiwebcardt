@@ -205,23 +205,32 @@ export default function Home() {
           </h1>
         </div>
         <div className="text-center mb-12">
-          <div className="flex gap-4">
-            {modelsIndex.map((data, index) => (
-              <button
-                onClick={() => setSelectModels(index)}
-                key={index}
-                className={`px-6 py-2 rounded-full font-medium border transition-all shadow-sm focus:outline-none
-                  ${
-                    selectModels === index
-                      ? "bg-blue-600 text-white border-blue-600 shadow-md scale-105"
-                      : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 border-gray-300 dark:border-gray-600 hover:bg-blue-50 dark:hover:bg-gray-700 hover:border-blue-400"
-                  }
-                `}
-                style={{ minWidth: 140 }}
-              >
-                {data.name}
-              </button>
-            ))}
+          <div className="w-full flex justify-center">
+            <div
+              className="flex gap-4 overflow-x-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200 px-2 py-2"
+              style={{ maxWidth: "100vw" }}
+            >
+              {modelsIndex.map((data, index) => (
+                <button
+                  onClick={() => setSelectModels(index)}
+                  key={index}
+                  className={`flex-shrink-0 px-6 py-3 rounded-full font-medium border transition-all shadow-sm focus:outline-none text-center whitespace-pre-line
+                    ${
+                      selectModels === index
+                        ? "bg-blue-600 text-white border-blue-600 shadow-md scale-105"
+                        : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 border-gray-300 dark:border-gray-600 hover:bg-blue-50 dark:hover:bg-gray-700 hover:border-blue-400"
+                    }
+                  `}
+                  style={{
+                    minWidth: 140,
+                    maxWidth: 180,
+                    wordBreak: "break-word",
+                  }}
+                >
+                  {data.name}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
 
