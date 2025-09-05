@@ -5,12 +5,16 @@ import CarDamageFlow from "./flow";
 const modelsIndex = [
   { name: "small models" },
   { name: "small models v2" },
+  { name: "small models v3" },
   { name: "medium models" },
   { name: "medium models v2" },
+  { name: "medium models v3" },
   { name: "small models onnx" },
   { name: "small models onnx v2" },
+  { name: "small models onnx v3" },
   { name: "medium models onnx " },
   { name: "medium models onnx v2" },
+  { name: "medium models onnx v3" },
 ];
 export default function Home() {
   const [mode, setMode] = useState<"detection" | "compare">("detection");
